@@ -13,10 +13,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createCustomer } from "@/data/create-customer";
+import { IFormErrors } from "@/interfaces/IFormErrors";
+import { phoneMask } from "@/utils/phone-mask";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import { z } from "zod";
+import { ErrorMessage } from "./error-message";
 
 export function CreateCustomer() {
   const [state, handeCreateCustomer] = useFormState(createCustomer, {
@@ -24,9 +27,7 @@ export function CreateCustomer() {
     errors: null,
   });
   const [phone, setPhone] = useState("");
-  const [errors, setErrors] = useState<{
-    [key: string]: string[] | undefined;
-  }>();
+  const [errors, setErrors] = useState<IFormErrors>();
   const formRef = useRef<HTMLFormElement>(null);
 
   useLayoutEffect(() => {
@@ -43,14 +44,10 @@ export function CreateCustomer() {
     const result = z
       .string()
       .max(15)
-      .transform((value) =>
-        value.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, "($1) $2$3-$4")
-      )
+      .transform((value) => phoneMask(value))
       .safeParse(event.currentTarget.value);
 
-    if (result.success) {
-      setPhone(result.data);
-    }
+    if (result.success) setPhone(result.data);
   }
 
   function handleReset() {
@@ -83,9 +80,7 @@ export function CreateCustomer() {
               </Label>
               <Input id="name" name="name" />
 
-              {errors?.name && (
-                <p className="text-red-500 text-sm">{errors.name[0]}</p>
-              )}
+              <ErrorMessage error={errors?.name} />
             </div>
 
             <div className="flex flex-col gap-2">
@@ -94,9 +89,7 @@ export function CreateCustomer() {
               </Label>
               <Input id="email" name="email" />
 
-              {errors?.email && (
-                <p className="text-red-500 text-sm">{errors.email[0]}</p>
-              )}
+              <ErrorMessage error={errors?.email} />
             </div>
 
             <div className="flex flex-col gap-2">
@@ -110,9 +103,7 @@ export function CreateCustomer() {
                 onChange={phoneApplyMask}
               />
 
-              {errors?.phone && (
-                <p className="text-red-500 text-sm">{errors.phone[0]}</p>
-              )}
+              <ErrorMessage error={errors?.phone} />
             </div>
 
             <div className="flex gap-4">
@@ -127,9 +118,7 @@ export function CreateCustomer() {
                   className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
 
-                {errors?.x && (
-                  <p className="text-red-500 text-sm">{errors.x[0]}</p>
-                )}
+                <ErrorMessage error={errors?.x} />
               </div>
 
               <div className="flex flex-col gap-2">
@@ -143,9 +132,7 @@ export function CreateCustomer() {
                   className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
 
-                {errors?.y && (
-                  <p className="text-red-500 text-sm">{errors.y[0]}</p>
-                )}
+                <ErrorMessage error={errors?.y} />
               </div>
             </div>
           </div>
