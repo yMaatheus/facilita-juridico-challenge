@@ -18,6 +18,14 @@ class CustomerService {
 
     return getAllCustomers;
   }
+
+  async searchByField(field: string) {
+    const searchCustomers = await customerRepository.searchByField(field);
+
+    if (!searchCustomers) throw new Error('Error search customers')
+
+    return searchCustomers;
+  }
 }
 
 export default new CustomerService();
