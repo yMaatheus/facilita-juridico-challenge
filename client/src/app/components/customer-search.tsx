@@ -22,10 +22,10 @@ export function CustomerSearch() {
   }
 
   return (
-    <div className="relative">
+    <div className="w-full relative lg:w-96">
       <MagnifyingGlass className="absolute text-muted-foreground right-2 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
       <Input
-        className="w-96 pr-7"
+        className="w-full lg:pr-7"
         placeholder="Pesquise por nome, e-mail, telefone"
         onChange={(e) => handleSearchDebouce(e.target.value)}
         defaultValue={searchParams.get("q")?.toString()}

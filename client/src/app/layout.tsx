@@ -22,9 +22,10 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head />
       <body
         className={cn(
-          "h-screen bg-background font-sans antialiased",
+          "w-full h-screen bg-background font-sans antialiased",
           openSans.variable
         )}
       >

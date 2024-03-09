@@ -60,12 +60,12 @@ export function CreateCustomer() {
   return (
     <Dialog onOpenChange={handleReset}>
       <DialogTrigger asChild>
-        <Button className="flex items-center gap-2">
+        <Button className="w-full flex items-center gap-2 lg:w-auto">
           <PlusIcon className="w-5 h-5" />
           Cliente
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="w-[90%] sm:max-w-[425px]">
         <form action={handeCreateCustomer} id="create-form" ref={formRef}>
           <DialogHeader>
             <DialogTitle>Cadastrar Cliente</DialogTitle>
