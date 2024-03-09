@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "database:migrate": "tsx --env-file='.env' src/database/migrations/migrate.ts",
-    "database:seed": "tsx --env-file='.env' src/database/seeders/seed.ts",
-    "start": "tsx --env-file='.env' src/http/server.ts",
-    "dev": "tsx watch --env-file='.env' src/http/server.ts"
+    "db:migrate": "tsx src/database/migrations/migrate.ts",
+    "db:seed": "tsx src/database/seeders/seed.ts",
+    "prestart": "npm run db:migrate",
+    "start": "tsx src/http/server.ts",
+    "dev": "tsx watch src/http/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
+    "dotenv": "^16.4.5",
     "fastify": "^4.26.2",
     "pg": "^8.11.3",
     "zod": "^3.22.4",
