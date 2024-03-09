@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   postgres:
@@ -17,6 +17,22 @@ services:
       - '5432:5432'
     volumes:
       - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d customer_management -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  app:
+    container_name: app
+    build: .
+    restart: always
+    ports:
+      - 3333:3333
+    environment:
+      - DATABASE_URL=postgresql://postgres:docker@postgres:5432/customer_management
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   pg_data:
