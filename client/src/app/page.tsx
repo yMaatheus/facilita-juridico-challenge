@@ -1,8 +1,7 @@
 import { CreateCustomer } from "@/components/create-customer";
 import { Navbar } from "@/components/navbar";
-import { Button } from "@/components/ui/button";
+import { OptimizedRoutes } from "@/components/optimized-routes";
 import { getCustomers } from "@/data/get-customers";
-import { MapPin } from "@phosphor-icons/react/dist/ssr";
 import { CustomerSearch } from "./components/customer-search";
 import { CustomersTable } from "./components/customers-table";
 
@@ -27,10 +26,7 @@ export default async function Page({ searchParams }: PageProps) {
           <div className="flex gap-2">
             <CreateCustomer />
 
-            <Button className="flex items-center gap-2">
-              <MapPin className="w-5 h-5" />
-              Calcular Rotas
-            </Button>
+            <OptimizedRoutes />
           </div>
         </section>
 
