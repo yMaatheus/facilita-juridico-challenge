@@ -5,13 +5,13 @@ Sistema de gerenciamento de clientes para uma empresa que realiza limpeza em res
 ![Animação](customers-management-preview.gif)
 
 ## 🛠 Tecnologias
-- [TypeScript](https://www.typescriptlang.org/)
-- [Docker](https://www.docker.com/)
-- [React](https://react.dev/)
-- [Next.js](https://nextjs.org/)
-- [Node.js](https://nodejs.org/en/)
-- [Fastify](https://fastify.dev/)
-- [Postgres](https://www.postgresql.org/)
+- [TypeScript](https://www.typescriptlang.org/) - ^5
+- [Docker](https://www.docker.com/) - 25.0.3
+- [React](https://react.dev/) - ^18
+- [Next.js](https://nextjs.org/) - 14.1.3
+- [Node.js](https://nodejs.org/en/) - 20.11.1
+- [Fastify](https://fastify.dev/) - ^4.26.2
+- [Postgres](https://www.postgresql.org/) - 16.2
 
 ## 🚀 Como executar o projeto
 ### Requisitos
