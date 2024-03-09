@@ -20,7 +20,7 @@ export default class CustomerController {
       y: z.coerce
         .number()
         .int()
-        .refine((value) => value !== 0, { message: "X cannot be 0" }),
+        .refine((value) => value !== 0, { message: "Y cannot be 0" }),
     });
 
     const { name, email, phone, x, y } = createCustomerBody.parse(request.body);
@@ -52,5 +52,11 @@ export default class CustomerController {
     const customers = await customerService.getAll();
 
     return reply.send(customers);
+  }
+
+  static async calculateOptimizedRoute(_request: FastifyRequest, reply: FastifyReply) {
+    const route = await customerService.calculateOptimizedRoute();
+
+    return reply.send(route);
   }
 }
