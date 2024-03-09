@@ -6,7 +6,7 @@ export async function getCustomersRoute() {
   try {
     const { data } = await api<ICustomerResponse[]>('/customer/route', {
       next: {
-        revalidate: 3,
+        revalidate: 10,
         tags: ['customer'],
       },
     })
