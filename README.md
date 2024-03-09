@@ -1,6 +1,8 @@
 ## ✏ Sobre o projeto
 Sistema de gerenciamento de clientes para uma empresa que realiza limpeza em residências, onde além de cadastrar e listar os clientes é necessário calcular a rota de atendimento mais otimizada para visitação.
 
+🔗 **[Video de apresentação](https://youtu.be/WODXUAlziaE)**
+
 ## 🎨 Layout
 ![Animação](customers-management-preview.gif)
 
