@@ -8,22 +8,22 @@ import { ZodError, z } from "zod";
 export async function createCustomer(_: unknown, formData: FormData) {
   try {
     const schema = z.object({
-      name: z.string().min(3),
-      email: z.string().email(),
+      name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
+      email: z.string().email("E-mail inválido"),
       phone: z
         .string()
         .regex(
           /^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$/,
-          "Invalid phone number"
+          "Númerio de telefone inválido"
         ),
       x: z.coerce
         .number()
         .int()
-        .refine((value) => value !== 0, { message: "X cannot be 0" }),
+        .refine((value) => value !== 0, { message: "X não pode ser 0" }),
       y: z.coerce
         .number()
         .int()
-        .refine((value) => value !== 0, { message: "X cannot be 0" }),
+        .refine((value) => value !== 0, { message: "Y não pode ser 0" }),
     });
 
     const { name, email, phone, x, y } = schema.parse(
