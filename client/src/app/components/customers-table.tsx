@@ -13,7 +13,7 @@ type CustomersTableProps = {
   customers: ICustomerResponse[];
 };
 
-export async function CustomersTable({ customers }: CustomersTableProps) {
+export function CustomersTable({ customers }: CustomersTableProps) {
   return (
     <ScrollArea className="h-[calc(100vh-260px)]">
       <Table>

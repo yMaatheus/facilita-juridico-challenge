@@ -11,7 +11,8 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: "Gerenciamento de Clientes",
-  description: "Sistema de Gerenciamento de Clientes para limpeza em residências",
+  description:
+    "Sistema de Gerenciamento de Clientes para limpeza em residências",
 };
 
 type RootLayoutProps = Readonly<{
