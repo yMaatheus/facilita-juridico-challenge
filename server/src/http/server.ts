@@ -15,5 +15,6 @@ app.setErrorHandler(errorMiddleware);
 
 app.post("/customer", CustomerController.create);
 app.get("/customer", CustomerController.get);
+app.get("/customer/route", CustomerController.calculateOptimizedRoute)
 
 app.listen({ port: 3333 }).then(() => console.log("HTTP server running!"));

@@ -1,4 +1,7 @@
+import { findNearestCustomer } from "../../utils/optimized-route.util";
 import { ICreateCustomerDTO } from "../dto/ICreateCustomerDTO";
+import { ICustomer } from "../dto/ICustomer";
+import { ICustomerResponseDTO } from "../dto/ICustomerResponseDTO";
 import customerRepository from "../repositories/customer.repository";
 
 class CustomerService {
@@ -19,6 +22,24 @@ class CustomerService {
     const searchCustomers = await customerRepository.searchByField(field);
 
     return searchCustomers;
+  }
+
+  // k-nearest neighbors (KNN) algorithm
+  async calculateOptimizedRoute() {
+    const allCustomers = await this.getAll();
+    const customers = [{ name: 'Enterprise', x: 0, y: 0 }, ...allCustomers]
+
+    let route: ICustomer[] = [customers[0]];
+    let remainingCustomers = customers.slice(1);
+
+    while (remainingCustomers.length > 0) {
+        const currentCustomer = route[route.length - 1];
+        const nearestCustomer = findNearestCustomer(currentCustomer, remainingCustomers);
+        route.push(nearestCustomer);
+        remainingCustomers = remainingCustomers.filter(customer => customer !== nearestCustomer);
+    }
+  
+    return route.slice(1) as ICustomerResponseDTO[];
   }
 }
 
